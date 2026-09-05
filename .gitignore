@@ -29,5 +29,6 @@ publish/
 *.zip
 
 ## Keep the released portable build tracked
-!Builds/
-!Builds/*.exe
+!builds/
+!builds/*.exe
+!builds/*.zip
