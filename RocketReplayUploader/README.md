@@ -6,13 +6,11 @@ Built with WPF / .NET 9. Windows only.
 
 ## Download
 
-**No installation needed** — the published app is a single portable `.exe` (self-contained, includes .NET):
+**No installation needed** — just unzip and run:
 
-👉 [**Download RocketReplayUploader.exe**](https://github.com/Maaariioo/RocketReplayUploader/releases/latest)
+👉 [**Download rocket-replay-uploader.zip (latest release)**](https://github.com/Maaariioo/RocketReplayUploader/releases/latest)
 
-You can also grab the same builds straight from this repository: `builds/rocket-replay-uploader.exe` (single-file) and `builds/rocket-replay-uploader-dlls.zip` (exe + dlls)
-
-Double-click it and set it up. Everything else is optional.
+Unzip it and double-click `rocket-replay-uploader.exe`. Everything else is optional.
 
 ## How it works
 
