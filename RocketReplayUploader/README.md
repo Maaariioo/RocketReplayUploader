@@ -1,72 +1,99 @@
-# RocketReplayUploader
+# Rocket Replay Uploader
 
-Sube automáticamente tus replays de Rocket League a ballchasing.com y los
-renombra según jugador/modo/fecha. Incluye una ventana de gestión con interfaz
-moderna para ver todos tus replays, subirlos, renombrarlos o eliminarlos.
+A local Rocket League replay manager connected to the [ballchasing.com](https://ballchasing.com) API. It watches your replays folder, **auto-uploads every replay you save**, and lets you manage all your replays from a modern desktop app (with a replay-group creator).
 
-## Primer uso
+Built with WPF / .NET 9. Windows only.
 
-1. Necesitas el SDK de .NET 9 instalado solo para COMPILARLO (el usuario
-   final que reciba el .exe ya publicado NO necesita instalar nada).
+## Download
 
-   Para publicarlo como un único .exe portable:
+**No installation needed** — the published app is a single portable `.exe` (self-contained, includes .NET):
 
-   ```
-   dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true
-   ```
+👉 [**Download RocketReplayUploader.exe**](https://github.com/Maaariioo/RocketReplayUploader/releases/latest)
 
-   El .exe queda en:
-   `bin\Release\net9.0-windows\win-x64\publish\RocketReplayUploader.exe`
+Double-click it and set it up. Everything else is optional.
 
-2. Comparte ese único `RocketReplayUploader.exe` (no hace falta nada más).
+## How it works
 
-## Para cualquier persona que lo reciba
+### 1. Auto-upload (the main feature)
 
-1. Doble clic en `RocketReplayUploader.exe`.
-2. La primera vez se abre la ventana de configuración:
-   - Carpeta donde Rocket League guarda tus replays (ya te propone la ruta
-     habitual, puedes elegirla con "Examinar...").
-   - Tu nombre de jugador.
-   - Tu API key de ballchasing.com (la validamos en el momento).
-   - Si subir los replays como public / unlisted / private.
-   - Si quieres que arranque solo cada vez que enciendes el PC.
-3. La ventana principal te muestra todos los replays de tu carpeta, con
-   botones en cada uno para:
-   - **Renombrar**: lo renombra a `Jugador_Modo_Game_Fecha`.
-   - **Subir**: lo sube a ballchasing.com y le pone el título.
-   - **Eliminar**: lo borra de la carpeta (pide confirmación).
-4. El interruptor **Autosubida** (activado por defecto) vigila la carpeta:
-   cada replay que guarde Rocket League se sube y se renombra solo.
-5. Al cerrar la ventana la app sigue funcionando en segundo plano desde la
-   **bandeja del sistema**. Clic derecho en el icono: abrir ventana,
-   activar/desactivar autosubida o salir del todo.
+- The app watches the folder where Rocket League saves replays (`Documents\My Games\Rocket League\TAGame\Demos` by default).
+- The **Auto-upload** toggle is ON by default: every time Rocket League saves a replay, the app **uploads it to ballchasing.com automatically** and **renames the file** to a `Player_Mode_Game_Date` pattern.
+- Uploads are queued and retried when they fail (network problems, Ballchasing being slow, etc.). Done items can be sent to the recycle bin or moved to an archive folder.
 
-## Cambiar la configuración más adelante
+### 2. Replay manager window
 
-Botón "Configuración" en la ventana principal, o ejecuta:
+The main window lists all your replays (parsed from the `.replay` file header: mode, map, score, date). Each row has buttons to:
+
+- **Rename** — normalize the filename.
+- **Upload** — upload it now and set its title on Ballchasing.
+- **View** — open it on ballchasing.com (`/r/<id>`).
+- **Delete** — remove the file (with confirmation).
+
+There are also batch actions: **Rename all**, **Upload all**, and **Delete all**.
+
+### 3. Replay group creator
+
+Select the replays you want, click **Create group**, give the group a name and your player identification (Steam/Epic), optionally identify teams — the app creates the group on Ballchasing and assigns the selected replays to it. No need to do it by hand on the website.
+
+### 4. Background operation
+
+Closing the window keeps the app running in the **system tray**. Right-click the tray icon to reopen the window, toggle auto-upload, or quit completely.
+
+## Interface
+
+- Dark / light themes.
+- **Language selector** with live switching (no restart): English, Español, Français.
+- Minimize-to-tray with notifications when uploads finish.
+
+## First run
+
+1. Launch `RocketReplayUploader.exe`.
+2. The setup window opens:
+   - **Replays folder** — where Rocket League saves replays (the usual path is pre-filled; use **Detect folders** to auto-find it).
+   - **Your player name.**
+   - **Ballchasing API key** — validated online the moment you save it.
+   - Upload visibility: public / unlisted / private.
+   - Whether to start the app automatically when you log in.
+
+3. That's it — from then on it runs in the tray and auto-uploads.
+
+Your configuration (including the encrypted API key) is stored at:
 
 ```
-RocketReplayUploader.exe --setup
+%AppData%\RocketReplayUploader\config.json
 ```
 
-## Activar/desactivar el arranque automático a mano
+## Manual commands
 
 ```
-RocketReplayUploader.exe --install      (arranca al iniciar sesión, recomendado)
-RocketReplayUploader.exe --uninstall    (lo quita)
+RocketReplayUploader.exe --setup          Open the configuration window
+RocketReplayUploader.exe --install        Start automatically at login (recommended)
+RocketReplayUploader.exe --uninstall      Remove auto-start
+RocketReplayUploader.exe --install-service    Real background Windows service (run as Administrator)
+RocketReplayUploader.exe --uninstall-service  Remove the service
 ```
 
-Alternativa (Servicio de Windows de verdad, sin interfaz; requiere abrir la
-consola "como Administrador"):
+## Building from source
+
+Requires the **.NET 9 SDK**.
 
 ```
-RocketReplayUploader.exe --install-service
-RocketReplayUploader.exe --uninstall-service
+dotnet restore RocketReplayUploader.sln
+dotnet test  RocketReplayUploader.sln        # 58 tests
+dotnet build RocketReplayUploader.sln -c Release
 ```
 
-## Dónde queda guardada tu configuración
+Publish the single-file portable exe:
 
-`%AppData%\RocketReplayUploader\config.json`
+```
+dotnet publish RocketReplayUploader/RocketReplayUploader.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true
+```
 
-(No la borres al desinstalar/actualizar el programa si quieres conservar
-tu API key y tus preferencias.)
+The exe is written to `RocketReplayUploader\bin\Release\net9.0-windows\win-x64\publish\RocketReplayUploader.exe`.
+
+## Tech notes
+
+- WPF (net9.0-windows), MVVM, hosted services for the folder watcher and upload queue.
+- Ballchasing API client with transient-error retry logic (C# `HttpClient`).
+- API key encrypted at rest with Windows DPAPI (`SecretProtector`), never stored in plain text.
+- Localization via RESX resources (`Resources\Strings.*.resx`) + a `TranslationSource` that raises `PropertyChanged` for instant language swap.
