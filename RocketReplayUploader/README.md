@@ -10,6 +10,8 @@ Built with WPF / .NET 9. Windows only.
 
 👉 [**Download RocketReplayUploader.exe**](https://github.com/Maaariioo/RocketReplayUploader/releases/latest)
 
+You can also grab the same build straight from this repository: `Builds/RocketReplayUploader.exe`
+
 Double-click it and set it up. Everything else is optional.
 
 ## How it works
