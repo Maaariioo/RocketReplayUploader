@@ -27,3 +27,7 @@ obj/
 ## Publish artifacts
 publish/
 *.zip
+
+## Keep the released portable build tracked
+!Builds/
+!Builds/*.exe
