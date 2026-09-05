@@ -1,0 +1,29 @@
+## .NET
+bin/
+obj/
+*.user
+*.suo
+.vs/
+*.userprefs
+
+## NuGet
+*.nupkg
+*.snupkg
+
+## Build results
+[Rr]elease/
+[Dd]ebug/
+*.pdb
+*.dll
+*.exe
+*.exe.config
+*.cache
+
+## Rider / VS Code
+.idea/
+.vscode/
+*.swp
+
+## Publish artifacts
+publish/
+*.zip

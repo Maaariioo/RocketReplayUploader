@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Btn.Cancel" xml:space="preserve"><value>Cancel</value></data>
+  <data name="Btn.Save" xml:space="preserve"><value>Save</value></data>
+  <data name="Btn.Browse" xml:space="preserve"><value>Browse...</value></data>
+  <data name="Btn.DetectFolders" xml:space="preserve"><value>Detect folders</value></data>
+  <data name="Btn.CreateGroup" xml:space="preserve"><value>Create group</value></data>
+  <data name="Btn.Settings" xml:space="preserve"><value>Settings</value></data>
+  <data name="Btn.Refresh" xml:space="preserve"><value>Refresh</value></data>
+  <data name="Btn.Rename" xml:space="preserve"><value>Rename</value></data>
+  <data name="Btn.Upload" xml:space="preserve"><value>Upload</value></data>
+  <data name="Btn.View" xml:space="preserve"><value>View</value></data>
+  <data name="Btn.Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="Btn.RenameAll" xml:space="preserve"><value>Rename all</value></data>
+  <data name="Btn.UploadAll" xml:space="preserve"><value>Upload all</value></data>
+  <data name="Btn.Logs" xml:space="preserve"><value>Logs</value></data>
+  <data name="Btn.ConfigureNow" xml:space="preserve"><value>Set up now</value></data>
+  <data name="Title.Settings" xml:space="preserve"><value>Rocket Replay Uploader Settings</value></data>
+  <data name="Title.Group" xml:space="preserve"><value>Create replay group</value></data>
+  <data name="Main.AutoUpload" xml:space="preserve"><value>Auto-upload</value></data>
+  <data name="Main.ManualUploadAs" xml:space="preserve"><value>Upload manually as:</value></data>
+  <data name="Vis.Public" xml:space="preserve"><value>Public</value></data>
+  <data name="Vis.Unlisted" xml:space="preserve"><value>Unlisted</value></data>
+  <data name="Vis.Private" xml:space="preserve"><value>Private</value></data>
+  <data name="Main.ManualOnlyNote" xml:space="preserve"><value>(the one in settings only affects auto-upload)</value></data>
+  <data name="Main.FolderWarning" xml:space="preserve"><value>The replays folder does not exist or is not configured.</value></data>
+  <data name="Main.FolderWarningSub" xml:space="preserve"><value>Auto-upload cannot work until you configure it.</value></data>
+  <data name="Main.ReplaysHeader" xml:space="preserve"><value>Replay</value></data>
+  <data name="Main.SizeHeader" xml:space="preserve"><value>Size</value></data>
+  <data name="Main.StatusHeader" xml:space="preserve"><value>Status</value></data>
+  <data name="Main.ActionsHeader" xml:space="preserve"><value>Actions</value></data>
+  <data name="Tool.MarkForGroup" xml:space="preserve"><value>Mark to upload in a group</value></data>
+  <data name="Tool.RenameRow" xml:space="preserve"><value>Rename to Player_Mode_Game_Date</value></data>
+  <data name="Tool.UploadRow" xml:space="preserve"><value>Upload to ballchasing.com with the visibility chosen above and set a title</value></data>
+  <data name="Tool.ViewRow" xml:space="preserve"><value>Open the uploaded replay on ballchasing.com</value></data>
+  <data name="Tool.DeleteRow" xml:space="preserve"><value>Remove from the folder (asks for confirmation)</value></data>
+  <data name="Empty.State" xml:space="preserve"><value>No replays yet</value></data>
+  <data name="Empty.Hint" xml:space="preserve"><value>The replays Rocket League saves will appear here to upload, rename or delete them.</value></data>
+  <data name="Tool.Logs" xml:space="preserve"><value>Open the logs folder (to debug problems)</value></data>
+  <data name="Tool.RenameAll" xml:space="preserve"><value>Rename all the replays in the list</value></data>
+  <data name="Tool.UploadAll" xml:space="preserve"><value>Upload all the replays in the list to ballchasing.com with the visibility chosen above</value></data>
+  <data name="Tool.CreateGroup" xml:space="preserve"><value>Create a group on ballchasing.com with all the replays marked with the checkbox. Those not yet uploaded are uploaded first.</value></data>
+  <data name="Tool.ThemeToggle" xml:space="preserve"><value>Switch between light and dark mode</value></data>
+  <data name="Tool.AutoUploadToggle" xml:space="preserve"><value>Automatically upload and rename every new replay</value></data>
+  <data name="Tool.Refresh" xml:space="preserve"><value>Re-read the replays folder</value></data>
+  <data name="Tool.Settings" xml:space="preserve"><value>Change folder, name, API key, visibility and auto-start</value></data>
+  <data name="Lang.Label" xml:space="preserve"><value>Language</value></data>
+  <data name="Lang.English" xml:space="preserve"><value>English</value></data>
+  <data name="Lang.Spanish" xml:space="preserve"><value>Español</value></data>
+  <data name="Lang.French" xml:space="preserve"><value>Français</value></data>
+  <data name="Lang.Tip" xml:space="preserve"><value>Change the interface language</value></data>
+  <data name="St.Pending" xml:space="preserve"><value>Pending</value></data>
+  <data name="St.Queued" xml:space="preserve"><value>In queue</value></data>
+  <data name="St.Uploading" xml:space="preserve"><value>Uploading...</value></data>
+  <data name="St.Renamed" xml:space="preserve"><value>Renamed</value></data>
+  <data name="St.Uploaded" xml:space="preserve"><value>Uploaded</value></data>
+  <data name="St.AlreadyUploaded" xml:space="preserve"><value>Already uploaded</value></data>
+  <data name="St.AddedToGroup" xml:space="preserve"><value>Added to group</value></data>
+  <data name="St.GroupAddError" xml:space="preserve"><value>Error adding to group</value></data>
+  <data name="St.RenameFailed" xml:space="preserve"><value>Could not rename (unreadable header)</value></data>
+  <data name="St.RenameError" xml:space="preserve"><value>Rename error</value></data>
+  <data name="St.ErrorWith" xml:space="preserve"><value>Error: {0}</value></data>
+  <data name="Tip.Map" xml:space="preserve"><value>Map: {0}</value></data>
+  <data name="Tip.Mode" xml:space="preserve"><value>Mode: {0}v{1}</value></data>
+  <data name="Tip.Score" xml:space="preserve"><value>Score: {0} - {1}</value></data>
+  <data name="Tip.MatchType" xml:space="preserve"><value>Match type: {0}</value></data>
+  <data name="Cnt.Zero" xml:space="preserve"><value>0 replays</value></data>
+  <data name="Cnt.One" xml:space="preserve"><value>1 replay</value></data>
+  <data name="Cnt.Many" xml:space="preserve"><value>{0} replays</value></data>
+  <data name="Status.NewReplayAuto" xml:space="preserve"><value>New replay detected, processing it...</value></data>
+  <data name="Status.NewReplayManual" xml:space="preserve"><value>New replay detected (auto-upload off, it stays in the list).</value></data>
+  <data name="Status.AutoOff" xml:space="preserve"><value>Auto-upload off. New replays will stay in the list.</value></data>
+  <data name="Status.AutoOn" xml:space="preserve"><value>Auto-upload on. Watching: {0}</value></data>
+  <data name="Status.AutoFail" xml:space="preserve"><value>Could not enable auto-upload. Make sure the replays folder exists.</value></data>
+  <data name="Status.RenamedOf" xml:space="preserve"><value>Renamed: {0}</value></data>
+  <data name="Status.RecycledOf" xml:space="preserve"><value>Moved to Recycle Bin: {0}</value></data>
+  <data name="Status.NoFolders" xml:space="preserve"><value>No replays folder exists: {0}</value></data>
+  <data name="Status.Empty" xml:space="preserve"><value>(empty)</value></data>
+  <data name="Status.InFolder" xml:space="preserve"><value>{0} replays in {1}</value></data>
+  <data name="Prog.Queued" xml:space="preserve"><value> · In queue: {0} of {1}</value></data>
+  <data name="Prog.Renamed" xml:space="preserve"><value> · Renamed {0} of {1}</value></data>
+  <data name="Prog.RenamedFail" xml:space="preserve"><value> · Renamed {0} of {1} ({2} with errors)</value></data>
+  <data name="Prog.Uploaded" xml:space="preserve"><value> · Uploaded {0} of {1}</value></data>
+  <data name="Prog.UploadedFail" xml:space="preserve"><value> · Uploaded {0} of {1} ({2} with errors)</value></data>
+  <data name="Prog.Group" xml:space="preserve"><value> · Group: {0} of {1}</value></data>
+  <data name="Prog.GroupFail" xml:space="preserve"><value> · Group: {0} of {1} ({2} with errors)</value></data>
+  <data name="Status.MassRenameOk" xml:space="preserve"><value>Renamed {0} replays</value></data>
+  <data name="Status.MassRenameFail" xml:space="preserve"><value>Renamed {0} replays, {1} with errors</value></data>
+  <data name="Status.MassUploadOk" xml:space="preserve"><value>Uploaded {0} replays to ballchasing.com</value></data>
+  <data name="Status.MassUploadFail" xml:space="preserve"><value>Uploaded {0} replays, {1} with errors</value></data>
+  <data name="Stats.Text" xml:space="preserve"><value>{0} uploaded · {1}</value></data>
+  <data name="Sel.UploadSelected" xml:space="preserve"><value>Upload selected ({0})</value></data>
+  <data name="Del.Title" xml:space="preserve"><value>Delete replay</value></data>
+  <data name="Del.Confirm" xml:space="preserve"><value>Move '{0}' to the Recycle Bin?\n\nYou can restore it from the Recycle Bin if you change your mind.</value></data>
+  <data name="Del.ErrorTitle" xml:space="preserve"><value>Error</value></data>
+  <data name="Del.Error" xml:space="preserve"><value>Could not move the file to the Recycle Bin ({0}).</value></data>
+  <data name="Group.Creating" xml:space="preserve"><value>Creating the group '{0}'...</value></data>
+  <data name="Group.FailTitle" xml:space="preserve"><value>Could not create the group</value></data>
+  <data name="Group.OkTitle" xml:space="preserve"><value>Group created</value></data>
+  <data name="Group.ErrTitle" xml:space="preserve"><value>Group created (with errors)</value></data>
+  <data name="Group.Transient" xml:space="preserve"><value>Could not create the group due to a connection or server problem. Try again.</value></data>
+  <data name="Group.Unexpected" xml:space="preserve"><value>An unexpected error occurred while creating the group.</value></data>
+  <data name="Group.DoneOk" xml:space="preserve"><value>Group '{0}' created with {1} replays.</value></data>
+  <data name="Group.DoneFail" xml:space="preserve"><value>Group '{0}' created with {1} replays, {2} with errors.</value></data>
+  <data name="Group.NotifyOk" xml:space="preserve"><value>Group '{0}' with {1} replays.</value></data>
+  <data name="Group.NotifyFail" xml:space="preserve"><value>Group '{0}' with {1} replays; {2} could not be added.</value></data>
+  <data name="Group.DialogTitle" xml:space="preserve"><value>Create replay group</value></data>
+  <data name="Group.DialogIntro" xml:space="preserve"><value>The group will be created and the {0} selected replays will be added.</value></data>
+  <data name="Group.NameLabel" xml:space="preserve"><value>Group name</value></data>
+  <data name="Group.NameTip" xml:space="preserve"><value>Name you'll see on ballchasing.com for this group</value></data>
+  <data name="Group.PlayerLabel" xml:space="preserve"><value>Player identification</value></data>
+  <data name="Group.PlayerTip" xml:space="preserve"><value>How to recognise the same player across matches</value></data>
+  <data name="Group.PlayerById" xml:space="preserve"><value>By account id (by-id) — recommended</value></data>
+  <data name="Group.PlayerByName" xml:space="preserve"><value>By name (by-name) — useful in tournaments with shared accounts</value></data>
+  <data name="Group.TeamLabel" xml:space="preserve"><value>Team identification</value></data>
+  <data name="Group.TeamTip" xml:space="preserve"><value>How to recognise the same team across matches</value></data>
+  <data name="Group.TeamDistinct" xml:space="preserve"><value>Fixed roster per match (by-distinct-players) — recommended</value></data>
+  <data name="Group.TeamClusters" xml:space="preserve"><value>Rotations or substitutions (by-player-clusters)</value></data>
+  <data name="Group.SettingsNote" xml:space="preserve"><value>These settings only affect how ballchasing computes the group's multi-match statistics.</value></data>
+  <data name="Group.NameRequired" xml:space="preserve"><value>Enter a name for the group.</value></data>
+  <data name="Setup.SavedTo" xml:space="preserve"><value>Saved in %AppData%\RocketReplayUploader\config.json</value></data>
+  <data name="Setup.FoldersLabel" xml:space="preserve"><value>Replay folders (one per account: Steam and Epic)</value></data>
+  <data name="Setup.FolderHeader" xml:space="preserve"><value>Replay folder</value></data>
+  <data name="Setup.PlayerHeader" xml:space="preserve"><value>Player name</value></data>
+  <data name="Setup.Steam" xml:space="preserve"><value>Steam</value></data>
+  <data name="Setup.Epic" xml:space="preserve"><value>Epic</value></data>
+  <data name="Setup.SteamPathTip" xml:space="preserve"><value>Folder where the Steam account stores replays (Demos)</value></data>
+  <data name="Setup.SteamPlayerTip" xml:space="preserve"><value>Player name of the Steam account</value></data>
+  <data name="Setup.EpicPathTip" xml:space="preserve"><value>Folder where the Epic account stores replays (DemosEpic)</value></data>
+  <data name="Setup.EpicPlayerTip" xml:space="preserve"><value>Player name of the Epic account</value></data>
+  <data name="Setup.DetectTip" xml:space="preserve"><value>Automatically fill in the folders where Steam and Epic store replays</value></data>
+  <data name="Setup.ApiKeyLabel" xml:space="preserve"><value>ballchasing.com API key (you generate it at https://ballchasing.com/upload)</value></data>
+  <data name="Setup.ToggleKeyTip" xml:space="preserve"><value>Show or hide the API key</value></data>
+  <data name="Setup.VisLabel" xml:space="preserve"><value>Replay visibility (auto-upload only)</value></data>
+  <data name="Setup.VisPublic" xml:space="preserve"><value>public — anyone can see it</value></data>
+  <data name="Setup.VisUnlisted" xml:space="preserve"><value>unlisted — only those with the link (recommended)</value></data>
+  <data name="Setup.VisPrivate" xml:space="preserve"><value>private — only you</value></data>
+  <data name="Setup.ManualNote" xml:space="preserve"><value>When uploading manually from the main window you can choose the visibility each time.</value></data>
+  <data name="Setup.AfterLabel" xml:space="preserve"><value>After uploading a replay successfully</value></data>
+  <data name="Setup.AfterNone" xml:space="preserve"><value>Do nothing (leave the file)</value></data>
+  <data name="Setup.AfterRecycle" xml:space="preserve"><value>Move to the Windows Recycle Bin</value></data>
+  <data name="Setup.AfterArchive" xml:space="preserve"><value>Move to an 'Archived' subfolder next to the replays</value></data>
+  <data name="Setup.Autostart" xml:space="preserve"><value>Start automatically when I sign in to Windows</value></data>
+  <data name="Setup.StatusDetected" xml:space="preserve"><value>Replay folders detected automatically.</value></data>
+  <data name="Setup.StatusNotYet" xml:space="preserve"><value>The folders don't exist yet; they'll be watched as soon as they appear.</value></data>
+  <data name="Setup.ErrorNoFolder" xml:space="preserve"><value>Enter at least one replay folder (Steam or Epic).</value></data>
+  <data name="Setup.ErrorNoKey" xml:space="preserve"><value>Enter your ballchasing.com API key.</value></data>
+  <data name="Setup.CheckingKey" xml:space="preserve"><value>Checking the API key...</value></data>
+  <data name="Setup.KeyInvalid" xml:space="preserve"><value>That API key doesn't look valid (or there's no connection). Make sure you copied it correctly.</value></data>
+  <data name="Setup.SavedMessage" xml:space="preserve"><value>Settings saved.\nConnected as: {0}</value></data>
+  <data name="Setup.ErrorNoPlayer" xml:space="preserve"><value>Enter the player name for the {0} account.</value></data>
+  <data name="Setup.WarnFolderMissing" xml:space="preserve"><value>Warning: the {0} folder doesn't exist yet; it'll be watched as soon as it appears.</value></data>
+  <data name="Setup.ErrorTitle" xml:space="preserve"><value>Settings</value></data>
+  <data name="Setup.BrowseTitle" xml:space="preserve"><value>Folder where a Rocket League account stores its replays</value></data>
+  <data name="Tray.Open" xml:space="preserve"><value>Open window</value></data>
+  <data name="Tray.ViewLast" xml:space="preserve"><value>View last upload on ballchasing.com</value></data>
+  <data name="Tray.AutoOn" xml:space="preserve"><value>Auto-upload: on</value></data>
+  <data name="Tray.AutoOff" xml:space="preserve"><value>Auto-upload: off</value></data>
+  <data name="Tray.Exit" xml:space="preserve"><value>Exit</value></data>
+  <data name="Tray.MinimizedTitle" xml:space="preserve"><value>Started minimized</value></data>
+  <data name="Tray.MinimizedMsg" xml:space="preserve"><value>Still watching your replays in the background. Click the tray icon to open the window.</value></data>
+  <data name="Tray.ClosingTitle" xml:space="preserve"><value>Still running in the background</value></data>
+  <data name="Tray.ClosingMsg" xml:space="preserve"><value>Auto-upload is still active. To fully close: right-click the tray icon > Exit.</value></data>
+  <data name="Notify.Uploaded" xml:space="preserve"><value>Replay uploaded</value></data>
+  <data name="Notify.AlreadyExisted" xml:space="preserve"><value>Replay already on ballchasing</value></data>
+  <data name="Notify.UploadedMsg" xml:space="preserve"><value>{0}\nOpen it on ballchasing.com from the row or the tray.</value></data>
+  <data name="Notify.ErrorTitle" xml:space="preserve"><value>Upload error</value></data>
+  <data name="Notify.ErrorMsg" xml:space="preserve"><value>{0}\n{1}</value></data>
+  <data name="Queue.NoConnection" xml:space="preserve"><value>No connection; will retry automatically</value></data>
+  <data name="Queue.NoId" xml:space="preserve"><value>Ballchasing did not return an id for the replay</value></data>
+  <data name="Exc.MissingKey" xml:space="preserve"><value>The ballchasing API key is not configured (run the program with --setup)</value></data>
+  <data name="Exc.ApiKeyRejected" xml:space="preserve"><value>Ballchasing rejected the API key (expired or revoked?). Generate a new one on ballchasing.com and update it in Settings.</value></data>
+  <data name="Exc.GroupRejected" xml:space="preserve"><value>Ballchasing refused to create the group (HTTP {0})</value></data>
+  <data name="Exc.GroupNoId" xml:space="preserve"><value>Ballchasing did not return an id when creating the group.</value></data>
+  <data name="Exc.FileRejected" xml:space="preserve"><value>Ballchasing refused the file (HTTP {0})</value></data>
+  <data name="Exc.Network" xml:space="preserve"><value>Network error</value></data>
+  <data name="Exc.Timeout" xml:space="preserve"><value>Timeout</value></data>
+  <data name="Exc.TransientGroup" xml:space="preserve"><value>HTTP {0} creating the group</value></data>
+  <data name="Prog.MissingConfig" xml:space="preserve"><value>Configuration is missing. Run the program by double-clicking it once to set it up.</value></data>
+  <data name="Inst.Installed" xml:space="preserve"><value>Done. It will start automatically next time you sign in to Windows.\n\nTo start it right now without signing out, run the normal .exe.</value></data>
+  <data name="Inst.Uninstalled" xml:space="preserve"><value>Auto-start disabled.</value></data>
+  <data name="Inst.ServiceCreated" xml:space="preserve"><value>Service created. Start it from services.msc or with: sc start RocketReplayUploader</value></data>
+  <data name="Inst.ServiceRemoved" xml:space="preserve"><value>Service removed.</value></data>
+  <data name="Inst.CmdFailed" xml:space="preserve"><value>Could not run the command: {0}</value></data>
+  <data name="Inst.CmdFailedDetails" xml:space="preserve"><value>The command failed ({0} {1}):\n\n{2}</value></data>
+  <data name="Inst.ServiceDesc" xml:space="preserve"><value>Automatically uploads and renames your Rocket League replays</value></data>
+</root>

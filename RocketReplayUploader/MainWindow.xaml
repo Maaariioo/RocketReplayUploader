@@ -1,0 +1,372 @@
+<Window x:Class="RocketReplayUploader.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:loc="clr-namespace:RocketReplayUploader.Infrastructure.Localization"
+        Style="{StaticResource AppWindowStyle}"
+        Title="Rocket Replay Uploader"
+        Width="1000" Height="660" MinWidth="800" MinHeight="500"
+        WindowStartupLocation="CenterScreen"
+        Icon="pack://application:,,,/RocketReplayUploader;component/Assets/app.ico"
+        Closing="Window_Closing">
+    <Grid Margin="24,18,24,14">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Cabecera -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Horizontal">
+                <Border Width="42" Height="42" CornerRadius="10"
+                        Background="{DynamicResource BrushPanel}"
+                        BorderBrush="{DynamicResource BrushBorder}" BorderThickness="1"
+                        Margin="0,0,14,0" VerticalAlignment="Center">
+                    <Image Source="/Assets/app.ico" Width="26" Height="26"/>
+                </Border>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="Rocket Replay Uploader" FontSize="20" FontFamily="{StaticResource ManropeSemiBold}" FontWeight="SemiBold"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
+                        <TextBlock Text="{Binding ReplayCountText}" FontSize="12"
+                                   Foreground="{DynamicResource BrushTextDim}"/>
+                        <TextBlock Text="  ·  " FontSize="12" Foreground="{DynamicResource BrushTextDim}"/>
+                        <TextBlock Text="{Binding ReplayFolderDisplay}" FontSize="12"
+                                   Foreground="{DynamicResource BrushTextDim}"
+                                   TextTrimming="CharacterEllipsis" MaxWidth="480"
+                                   ToolTip="{Binding ReplayFolderDisplay}"/>
+                        <TextBlock Text="{Binding StatsText}" FontSize="12"
+                                   Foreground="{DynamicResource BrushAccent}"
+                                   Margin="8,0,0,0" Visibility="{Binding StatsText, Converter={StaticResource StringToVis}}"/>
+                        <TextBlock Text="{Binding ProgressText}" FontSize="12"
+                                   Foreground="{DynamicResource BrushAccent}"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,16,0"
+                            ToolTip="{Binding [Tool.ThemeToggle], Source={x:Static loc:TranslationSource.Instance}}">
+                    <TextBlock Text="&#xE706;" FontFamily="Segoe MDL2 Assets" FontSize="13"
+                               Foreground="{DynamicResource BrushTextDim}"
+                               VerticalAlignment="Center" Margin="0,0,8,0"/>
+                    <ToggleButton Style="{StaticResource ToggleSwitchStyle}"
+                                  IsChecked="{Binding IsDarkMode, Mode=TwoWay}"/>
+                    <TextBlock Text="&#xE708;" FontFamily="Segoe MDL2 Assets" FontSize="13"
+                               Foreground="{DynamicResource BrushTextDim}"
+                               VerticalAlignment="Center" Margin="8,0,0,0"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,16,0"
+                            ToolTip="{Binding [Tool.AutoUploadToggle], Source={x:Static loc:TranslationSource.Instance}}">
+                    <TextBlock Text="{Binding [Main.AutoUpload], Source={x:Static loc:TranslationSource.Instance}}"
+                               Foreground="{DynamicResource BrushTextDim}"
+                               VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <ToggleButton Style="{StaticResource ToggleSwitchStyle}"
+                                  IsChecked="{Binding IsAutoUpload, Mode=OneWay}"
+                                  Command="{Binding ToggleAutoUploadCommand}"/>
+                </StackPanel>
+
+                <ComboBox Width="92" Padding="7,4" FontSize="12" Margin="0,0,2,0"
+                          VerticalAlignment="Center" VerticalContentAlignment="Center"
+                          SelectedValue="{Binding SelectedLanguage, Mode=TwoWay}"
+                          SelectedValuePath="Tag"
+                          ToolTip="{Binding [Lang.Tip], Source={x:Static loc:TranslationSource.Instance}}">
+                    <ComboBoxItem Content="English" Tag="en"/>
+                    <ComboBoxItem Content="Español" Tag="es"/>
+                    <ComboBoxItem Content="Français" Tag="fr"/>
+                </ComboBox>
+
+                <Button Style="{StaticResource GhostButtonStyle}" Command="{Binding RefreshCommand}"
+                        ToolTip="{Binding [Tool.Refresh], Source={x:Static loc:TranslationSource.Instance}}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="&#xE72C;" FontFamily="Segoe MDL2 Assets" FontSize="13"
+                                   VerticalAlignment="Center" Margin="0,0,8,0"/>
+                        <TextBlock Text="{Binding [Btn.Refresh], Source={x:Static loc:TranslationSource.Instance}}"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Style="{StaticResource GhostButtonStyle}" Command="{Binding SetupCommand}"
+                        Margin="8,0,0,0"
+                        ToolTip="{Binding [Tool.Settings], Source={x:Static loc:TranslationSource.Instance}}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="&#xE713;" FontFamily="Segoe MDL2 Assets" FontSize="13"
+                                   VerticalAlignment="Center" Margin="0,0,8,0"/>
+                        <TextBlock Text="{Binding [Btn.Settings], Source={x:Static loc:TranslationSource.Instance}}"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </Grid>
+
+        <!-- Barra de subida manual: visibilidad y subir lo marcado -->
+        <Border Grid.Row="1" Margin="0,14,0,0" CornerRadius="8"
+                Background="{DynamicResource BrushPanel}"
+                BorderBrush="{DynamicResource BrushBorder}" BorderThickness="1">
+            <Grid Margin="14,10">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding [Main.ManualUploadAs], Source={x:Static loc:TranslationSource.Instance}}"
+                               FontSize="12"
+                               Foreground="{DynamicResource BrushTextDim}" VerticalAlignment="Center"/>
+                    <RadioButton Content="{Binding [Vis.Public], Source={x:Static loc:TranslationSource.Instance}}"
+                                 Margin="14,0,0,0" VerticalAlignment="Center"
+                                 IsChecked="{Binding SelectedVisibility, Converter={StaticResource StringEqualsToBool}, ConverterParameter=public}"/>
+                    <RadioButton Content="{Binding [Vis.Unlisted], Source={x:Static loc:TranslationSource.Instance}}"
+                                 Margin="14,0,0,0" VerticalAlignment="Center"
+                                 IsChecked="{Binding SelectedVisibility, Converter={StaticResource StringEqualsToBool}, ConverterParameter=unlisted}"/>
+                    <RadioButton Content="{Binding [Vis.Private], Source={x:Static loc:TranslationSource.Instance}}"
+                                 Margin="14,0,0,0" VerticalAlignment="Center"
+                                 IsChecked="{Binding SelectedVisibility, Converter={StaticResource StringEqualsToBool}, ConverterParameter=private}"/>
+                    <TextBlock Text="{Binding [Main.ManualOnlyNote], Source={x:Static loc:TranslationSource.Instance}}"
+                               FontSize="11" Foreground="{DynamicResource BrushTextDim}"
+                               VerticalAlignment="Center" Margin="14,0,0,0" Opacity="0.7"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Button Style="{StaticResource GhostButtonStyle}" Padding="10,5" FontSize="12"
+                            Command="{Binding CreateGroupCommand}"
+                            IsEnabled="{Binding CanCreateGroup}"
+                            ToolTip="{Binding [Tool.CreateGroup], Source={x:Static loc:TranslationSource.Instance}}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="&#xE71D;" FontFamily="Segoe MDL2 Assets" FontSize="12"
+                                       VerticalAlignment="Center" Margin="0,0,6,0"/>
+                            <TextBlock Text="{Binding [Btn.CreateGroup], Source={x:Static loc:TranslationSource.Instance}}"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource AccentButtonStyle}" Padding="10,5" FontSize="12"
+                            Command="{Binding UploadSelectedCommand}"
+                            IsEnabled="{Binding HasSelection}"
+                            ToolTip="{Binding [Tool.UploadRow], Source={x:Static loc:TranslationSource.Instance}}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="&#xE898;" FontFamily="Segoe MDL2 Assets" FontSize="12"
+                                       VerticalAlignment="Center" Margin="0,0,6,0"/>
+                            <TextBlock Text="{Binding SelectedCountText}"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Aviso: carpeta no configurada o inexistente -->
+        <Border Grid.Row="2" Margin="0,14,0,0" CornerRadius="8"
+                Background="{DynamicResource BrushPanel}"
+                BorderBrush="{DynamicResource BrushDangerBorder}" BorderThickness="1"
+                Visibility="{Binding FolderInvalid, Converter={StaticResource BoolToVis}}">
+            <StackPanel Orientation="Horizontal" Margin="14,10">
+                <TextBlock Text="&#xE7BA;" FontFamily="Segoe MDL2 Assets" FontSize="15"
+                           Foreground="{DynamicResource BrushDanger}" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding [Main.FolderWarning], Source={x:Static loc:TranslationSource.Instance}}"
+                           Foreground="{DynamicResource BrushText}" VerticalAlignment="Center"
+                           Margin="10,0,0,0"/>
+                <TextBlock Text="{Binding [Main.FolderWarningSub], Source={x:Static loc:TranslationSource.Instance}}"
+                           Foreground="{DynamicResource BrushTextDim}" VerticalAlignment="Center"
+                           Margin="8,0,0,0"/>
+                <Button Content="{Binding [Btn.ConfigureNow], Source={x:Static loc:TranslationSource.Instance}}"
+                        Style="{StaticResource AccentButtonStyle}"
+                        Command="{Binding SetupCommand}" Margin="16,0,0,0" Padding="10,5"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Lista de replays -->
+        <Border Grid.Row="3" Margin="0,14,0,12" Background="{DynamicResource BrushPanel}"
+                CornerRadius="10" BorderBrush="{DynamicResource BrushBorder}" BorderThickness="1">
+            <Grid>
+                <DataGrid x:Name="ReplaysGrid" ItemsSource="{Binding Replays}"
+                          Visibility="{Binding HasReplays, Converter={StaticResource BoolToVis}}"
+                          MouseDoubleClick="ReplaysGrid_MouseDoubleClick">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Width="38" CanUserResize="False">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                              HorizontalAlignment="Center" VerticalAlignment="Center"
+                                              ToolTip="{Binding [Tool.MarkForGroup], Source={x:Static loc:TranslationSource.Instance}}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Header="{Binding [Main.ReplaysHeader], Source={x:Static loc:TranslationSource.Instance}}" Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel VerticalAlignment="Center" ToolTip="{Binding TooltipText}">
+                                        <TextBlock Text="{Binding Name}" FontFamily="{StaticResource ManropeSemiBold}" FontWeight="SemiBold"
+                                                   TextTrimming="CharacterEllipsis"/>
+                                        <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
+                                            <TextBlock Text="{Binding Modified}" FontSize="11"
+                                                       Foreground="{DynamicResource BrushTextDim}"/>
+                                            <ProgressBar Style="{StaticResource RowProgressStyle}"
+                                                         Margin="12,0,0,0" VerticalAlignment="Center">
+                                                <ProgressBar.Visibility>
+                                                    <Binding Path="IsBusy">
+                                                        <Binding.Converter>
+                                                            <BooleanToVisibilityConverter/>
+                                                        </Binding.Converter>
+                                                    </Binding>
+                                                </ProgressBar.Visibility>
+                                            </ProgressBar>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTextColumn Header="{Binding [Main.SizeHeader], Source={x:Static loc:TranslationSource.Instance}}"
+                                            Binding="{Binding Size}" Width="80"/>
+
+                        <DataGridTemplateColumn Header="{Binding [Main.StatusHeader], Source={x:Static loc:TranslationSource.Instance}}"
+                                                Width="200" CanUserResize="False">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                                        <Ellipse Width="8" Height="8" Margin="0,0,8,0">
+                                            <Ellipse.Style>
+                                                <Style TargetType="Ellipse">
+                                                    <Setter Property="Fill" Value="{DynamicResource BrushTextDim}"/>
+                                                    <Setter Property="Opacity" Value="0.6"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding StatusKind}" Value="Busy">
+                                                            <Setter Property="Fill" Value="{DynamicResource BrushAccent}"/>
+                                                            <Setter Property="Opacity" Value="1"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding StatusKind}" Value="Ok">
+                                                            <Setter Property="Fill" Value="{DynamicResource BrushAccent}"/>
+                                                            <Setter Property="Opacity" Value="1"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding StatusKind}" Value="Error">
+                                                            <Setter Property="Fill" Value="{DynamicResource BrushDanger}"/>
+                                                            <Setter Property="Opacity" Value="1"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Ellipse.Style>
+                                        </Ellipse>
+                                        <TextBlock Text="{Binding Status}" FontSize="11"
+                                                   Foreground="{DynamicResource BrushTextDim}"
+                                                   TextTrimming="CharacterEllipsis"
+                                                   ToolTip="{Binding Status}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Header="{Binding [Main.ActionsHeader], Source={x:Static loc:TranslationSource.Instance}}"
+                                                Width="352" CanUserResize="False">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal"
+                                                HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <Button Style="{StaticResource RowButtonStyle}"
+                                                ToolTip="{Binding [Tool.RenameRow], Source={x:Static loc:TranslationSource.Instance}}"
+                                                Command="{Binding DataContext.RenameCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                                CommandParameter="{Binding}">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="&#xE70F;" FontFamily="Segoe MDL2 Assets" FontSize="11"
+                                                           VerticalAlignment="Center" Margin="0,0,6,0"/>
+                                                <TextBlock Text="{Binding [Btn.Rename], Source={x:Static loc:TranslationSource.Instance}}"/>
+                                            </StackPanel>
+                                        </Button>
+                                        <Button Style="{StaticResource RowButtonStyle}" Margin="6,0,0,0"
+                                                ToolTip="{Binding [Tool.UploadRow], Source={x:Static loc:TranslationSource.Instance}}"
+                                                Command="{Binding DataContext.UploadCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                                CommandParameter="{Binding}">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="&#xE898;" FontFamily="Segoe MDL2 Assets" FontSize="11"
+                                                           VerticalAlignment="Center" Margin="0,0,6,0"/>
+                                                <TextBlock Text="{Binding [Btn.Upload], Source={x:Static loc:TranslationSource.Instance}}"/>
+                                            </StackPanel>
+                                        </Button>
+                                        <Button Style="{StaticResource RowButtonStyle}" Margin="6,0,0,0"
+                                                IsEnabled="{Binding BallchasingUrl, Converter={StaticResource StringToBool}}"
+                                                ToolTip="{Binding [Tool.ViewRow], Source={x:Static loc:TranslationSource.Instance}}"
+                                                Command="{Binding DataContext.OpenBallchasingCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                                CommandParameter="{Binding}">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="&#xE774;" FontFamily="Segoe MDL2 Assets" FontSize="11"
+                                                           VerticalAlignment="Center" Margin="0,0,6,0"/>
+                                                <TextBlock Text="{Binding [Btn.View], Source={x:Static loc:TranslationSource.Instance}}"/>
+                                            </StackPanel>
+                                        </Button>
+                                        <Button Style="{StaticResource RowDangerButtonStyle}" Margin="6,0,0,0"
+                                                ToolTip="{Binding [Tool.DeleteRow], Source={x:Static loc:TranslationSource.Instance}}"
+                                                Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                                CommandParameter="{Binding}">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="&#xE74D;" FontFamily="Segoe MDL2 Assets" FontSize="11"
+                                                           VerticalAlignment="Center" Margin="0,0,6,0"/>
+                                                <TextBlock Text="{Binding [Btn.Delete], Source={x:Static loc:TranslationSource.Instance}}"/>
+                                            </StackPanel>
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <Border Visibility="{Binding NoReplays, Converter={StaticResource BoolToVis}}"
+                        Background="Transparent">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock Text="&#xE8B7;" FontFamily="Segoe MDL2 Assets" FontSize="44"
+                                   Foreground="{DynamicResource BrushTextDim}" HorizontalAlignment="Center"
+                                   Opacity="0.45"/>
+                        <TextBlock Text="{Binding [Empty.State], Source={x:Static loc:TranslationSource.Instance}}"
+                                   FontSize="16"
+                                   Foreground="{DynamicResource BrushTextDim}" HorizontalAlignment="Center"
+                                   Margin="0,10,0,0"/>
+                        <TextBlock Text="{Binding [Empty.Hint], Source={x:Static loc:TranslationSource.Instance}}"
+                                   FontSize="12" Foreground="{DynamicResource BrushTextDim}"
+                                   HorizontalAlignment="Center" Margin="0,8,0,0"
+                                   TextWrapping="Wrap" TextAlignment="Center" MaxWidth="440"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Border>
+
+        <!-- Pie -->
+        <Border Grid.Row="4" BorderBrush="{DynamicResource BrushBorder}" BorderThickness="0,1,0,0"
+                Padding="0,10,0,0">
+            <Grid>
+                <TextBlock Text="{Binding StatusText}" Foreground="{DynamicResource BrushTextDim}"
+                           FontSize="12" TextTrimming="CharacterEllipsis"
+                           VerticalAlignment="Center" Margin="0,0,320,0"/>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Style="{StaticResource GhostButtonStyle}" Padding="9,4" FontSize="12"
+                            Command="{Binding OpenLogsCommand}"
+                            ToolTip="{Binding [Tool.Logs], Source={x:Static loc:TranslationSource.Instance}}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="&#xE9D9;" FontFamily="Segoe MDL2 Assets" FontSize="12"
+                                       VerticalAlignment="Center" Margin="0,0,6,0"/>
+                            <TextBlock Text="{Binding [Btn.Logs], Source={x:Static loc:TranslationSource.Instance}}"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource GhostButtonStyle}" Padding="9,4" FontSize="12"
+                            Margin="8,0,0,0" Command="{Binding RenameAllCommand}"
+                            IsEnabled="{Binding CanMassAction}"
+                            ToolTip="{Binding [Tool.RenameAll], Source={x:Static loc:TranslationSource.Instance}}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="&#xE70F;" FontFamily="Segoe MDL2 Assets" FontSize="12"
+                                       VerticalAlignment="Center" Margin="0,0,6,0"/>
+                            <TextBlock Text="{Binding [Btn.RenameAll], Source={x:Static loc:TranslationSource.Instance}}"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource AccentButtonStyle}" Padding="9,4" FontSize="12"
+                            Margin="8,0,0,0" Command="{Binding UploadAllCommand}"
+                            IsEnabled="{Binding CanMassAction}"
+                            ToolTip="{Binding [Tool.UploadAll], Source={x:Static loc:TranslationSource.Instance}}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="&#xE898;" FontFamily="Segoe MDL2 Assets" FontSize="12"
+                                       VerticalAlignment="Center" Margin="0,0,6,0"/>
+                            <TextBlock Text="{Binding [Btn.UploadAll], Source={x:Static loc:TranslationSource.Instance}}"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

@@ -1,0 +1,21 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="BrushBg" Color="#14141C"/>
+    <SolidColorBrush x:Key="BrushPanel" Color="#1D1D29"/>
+    <SolidColorBrush x:Key="BrushPanelHover" Color="#26263A"/>
+    <SolidColorBrush x:Key="BrushPanelPressed" Color="#33334C"/>
+    <SolidColorBrush x:Key="BrushBorder" Color="#2E2E44"/>
+    <SolidColorBrush x:Key="BrushText" Color="#EDEDF5"/>
+    <SolidColorBrush x:Key="BrushTextDim" Color="#9A9AB0"/>
+    <SolidColorBrush x:Key="BrushAccent" Color="#00D26A"/>
+    <SolidColorBrush x:Key="BrushAccentHover" Color="#16E87C"/>
+    <SolidColorBrush x:Key="BrushAccentDim" Color="#0A8A4A"/>
+    <SolidColorBrush x:Key="BrushAccentFg" Color="#0B1B12"/>
+    <SolidColorBrush x:Key="BrushDanger" Color="#FF5C5C"/>
+    <SolidColorBrush x:Key="BrushDangerBorder" Color="#5A2E36"/>
+    <SolidColorBrush x:Key="BrushRowSelected" Color="#233B2F"/>
+    <SolidColorBrush x:Key="BrushToggleTrack" Color="#3A3A50"/>
+    <SolidColorBrush x:Key="BrushKnob" Color="#EDEDF5"/>
+    <SolidColorBrush x:Key="BrushScrollThumb" Color="#4A4A66"/>
+    <SolidColorBrush x:Key="BrushScrollThumbHover" Color="#5C5C7C"/>
+</ResourceDictionary>
