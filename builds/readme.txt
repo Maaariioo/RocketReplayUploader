@@ -1,16 +1,18 @@
-Rocket Replay Uploader - portable builds
+Rocket Replay Uploader - builds
 
-Files in this folder:
-  rocket-replay-uploader.exe        single-file portable exe (self-contained, no install needed, just double-click)
-  rocket-replay-uploader-dlls.zip   same app but unpacked (exe + dlls), for users who prefer dll distribution
-  installer.iss                     Inno Setup script to build a real installer (run: iscc installer.iss)
-  install.bat                       simple copy installer (copies exe to %LOCALAPPDATA%\RocketReplayUploader)
+Files:
+  rocket-replay-uploader.exe        single-file portable exe (just double-click, no install)
+  rocket-replay-uploader.zip        same portable exe inside a normal zip
+  rocket-replay-uploader-dlls.zip   unpacked build (exe + dlls)
+  rocket-replay-uploader-setup.exe  simple installer - place next to rocket-replay-uploader.exe or .zip and run it
+  installer.iss                     Inno Setup script (iscc installer.iss -> setup.exe)
+  install.bat                       batch installer alternative
   readme.txt                        this file
 
-Quick start:
-  double-click rocket-replay-uploader.exe
+Quick start (portable):
+  unzip rocket-replay-uploader.zip and double-click rocket-replay-uploader.exe
 
-To build an installer exe from the iss script:
-  winget install JRSoftware.InnoSetup
-  iscc builds\installer.iss
-  -> creates builds\rocket-replay-uploader-setup.exe
+Installer:
+  1. keep rocket-replay-uploader-setup.exe next to rocket-replay-uploader.exe (or .zip)
+  2. run rocket-replay-uploader-setup.exe
+  3. it copies to %LOCALAPPDATA%\RocketReplayUploader, creates Start Menu shortcut, optional autostart
